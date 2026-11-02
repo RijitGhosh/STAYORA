@@ -1,0 +1,88 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 210 29% 16%;
+    --card: 0 0% 100%;
+    --card-foreground: 210 29% 16%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 210 29% 16%;
+    --muted: 210 17% 95%;
+    --muted-foreground: 210 12% 45%;
+    --border: 210 20% 91%;
+    --input: 210 20% 91%;
+
+    /* Theme surfaces — swapped wholesale in .dark */
+    --surface: #FFFFFF;
+    --surface-sunken: #FAF9F6;
+    --text-strong: #123047;
+    --text-body: #202B36;
+    --text-muted: #687786;
+    --line: #E3E8EC;
+  }
+
+  .dark {
+    --background: 211 38% 9%;
+    --foreground: 210 20% 92%;
+    --card: 210 30% 13%;
+    --card-foreground: 210 20% 92%;
+    --popover: 210 30% 13%;
+    --popover-foreground: 210 20% 92%;
+    --muted: 210 25% 18%;
+    --muted-foreground: 210 12% 65%;
+    --border: 210 20% 22%;
+    --input: 210 20% 22%;
+
+    --surface: #141F2A;
+    --surface-sunken: #0E1922;
+    --text-strong: #EEF3F6;
+    --text-body: #D6E0E7;
+    --text-muted: #93A4B2;
+    --line: #26353F;
+  }
+
+  html { color-scheme: light; }
+  html.dark { color-scheme: dark; }
+
+  body {
+    @apply font-sans antialiased;
+    background: var(--surface-sunken);
+    color: var(--text-body);
+  }
+
+  /* Brand headings flip to light ink in dark mode */
+  h1, h2, h3, h4, h5, h6 {
+    color: var(--text-strong);
+  }
+}
+
+@layer utilities {
+  /* Dark-mode overrides for the hard-coded light surfaces used across pages */
+  .dark .bg-white { background-color: var(--surface) !important; }
+  .dark .bg-warmWhite { background-color: var(--surface-sunken) !important; }
+
+  .dark .text-deepOceanBlue { color: var(--text-strong) !important; }
+  .dark .text-primaryText { color: var(--text-body) !important; }
+  .dark .text-secondaryText { color: var(--text-muted) !important; }
+
+  .dark .border-border { border-color: var(--line) !important; }
+
+  /* Form controls need explicit dark surfaces */
+  .dark input,
+  .dark select,
+  .dark textarea {
+    background-color: #1B2833 !important;
+    color: var(--text-body) !important;
+    border-color: var(--line) !important;
+  }
+  .dark input::placeholder,
+  .dark textarea::placeholder { color: #7A8B99; }
+
+  /* The navy header stays navy in both themes — it is the brand anchor */
+  .dark header.bg-deepOceanBlue { background-color: #0B1822 !important; }
+}
